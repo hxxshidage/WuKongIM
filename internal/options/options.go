@@ -56,6 +56,7 @@ type Options struct {
 	vp                *viper.Viper // 内部配置对象
 	Mode              Mode         // 模式 debug 测试 release 正式 bench 压力测试
 	HTTPAddr          string       // http api的监听地址 默认为 0.0.0.0:5001
+	HttpInternalKey   string       // 访问http api需要验证的key
 	Addr              string       // tcp监听地址 例如：tcp://0.0.0.0:5100
 	RootDir           string       // 根目录
 	DataDir           string       // 数据目录
@@ -786,6 +787,7 @@ func (o *Options) ConfigureWithViper(vp *viper.Viper) {
 	o.GinMode = o.getString("ginMode", o.GinMode)
 
 	o.HTTPAddr = o.getString("httpAddr", o.HTTPAddr)
+	o.HttpInternalKey = o.getString("httpInternalKey", o.HttpInternalKey)
 	o.Addr = o.getString("addr", o.Addr)
 
 	o.ManagerToken = o.getString("managerToken", o.ManagerToken)
