@@ -26,6 +26,8 @@ func newRoute(s *Server) *route {
 
 // Route Route
 func (a *route) route(r *wkhttp.WKHttp) {
+	r.Use(apiCallMw(a.Error))
+
 	r.GET("/route", a.routeUserIMAddr)               // 获取用户所在节点的连接信息
 	r.POST("/route/batch", a.routeUserIMAddrOfBatch) // 批量获取用户所在节点的连接信息
 

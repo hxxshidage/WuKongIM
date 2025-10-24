@@ -37,19 +37,7 @@ func newUser(s *Server) *user {
 
 // Route 用户相关路由配置
 func (u *user) route(r *wkhttp.WKHttp) {
-	r.Use(func(c *wkhttp.Context) {
-		valFromInternal := c.GetHeader("k-from-internal")
-		internalKey := options.G.HttpInternalKey
-		if internalKey != "" && valFromInternal != internalKey {
-			err := errors.New("forbidden: not from trusted server")
-			u.Error("access forbidden", zap.Error(err))
-			c.ResponseErrorWithStatus(http.StatusForbidden, err)
-			c.Abort()
-			return
-		}
-
-		c.Next()
-	})
+	r.Use(apiCallMw(u.Error))
 
 	r.POST("/user/token", u.updateToken)                  // 更新用户token
 	r.POST("/user/device_quit", u.deviceQuit)             // 强制设备退出

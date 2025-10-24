@@ -2,7 +2,7 @@ mode: "debug"
 addr: "tcp://0.0.0.0:5100" # tcp监听地址
 httpAddr: "0.0.0.0:5001" # http api监听地址
 #httpAddr: "127.0.0.1:5001" # http api监听地址
-httpInternalKey: "" # 5iDlKLrp21jCRid3
+httpInternalKey: "5iDlKLrp21jCRid3" # 5iDlKLrp21jCRid3
 wsAddr: "ws://0.0.0.0:5200"  # websocket ws 监听地址
 rootDir: "./wukongimdata/1" # 数据存储目录
 pprofOn: true
@@ -10,6 +10,11 @@ stress: true # 是否开启压力测试模式
 # whitelistOffOfPerson: false
 intranet:
   tcpAddr: "127.0.0.1:5100" # 内网tcp地址
+external: # 公网配置
+  ip: "" # 节点外网IP，客户端能够访问到的IP地址，如果客户端是内网使用，这里也可以填写内网IP
+  tcpAddr: "192.168.1.155:5100" #  默认自动获取， 节点的TCP地址 对外公开，APP端长连接通讯  格式： ip:port
+  wsAddr: "ws://192.168.1.155:5200" # 默认自动获取， 节点的wsAdd地址 对外公开 WEB端长连接通讯 格式： ws://ip:port  （支持域名配置）
+#  wssAddr: "" # 对外的wssAddr地址，也就是客户端真正连接的地址 格式：wss://ip:port （支持域名配置）
 logger:
   traceOn: false
 manager:  # 管理端配置

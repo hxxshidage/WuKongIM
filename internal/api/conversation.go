@@ -33,6 +33,8 @@ func newConversation(s *Server) *conversation {
 
 // Route 路由
 func (s *conversation) route(r *wkhttp.WKHttp) {
+	r.Use(apiCallMw(s.Error))
+
 	// r.GET("/conversations", s.conversationsList)                    // 获取会话列表 （此接口作废，使用/conversation/sync）
 	r.POST("/conversations/clearUnread", s.clearConversationUnread) // 清空会话未读数量
 	r.POST("/conversations/setUnread", s.setConversationUnread)     // 设置会话未读数量
