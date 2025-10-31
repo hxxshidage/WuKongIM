@@ -17,6 +17,7 @@ external: # 公网配置
 #  wssAddr: "" # 对外的wssAddr地址，也就是客户端真正连接的地址 格式：wss://ip:port （支持域名配置）
 logger:
   traceOn: false
+  lineNum: true
 manager:  # 管理端配置
   on: true
   addr: "0.0.0.0:5300"
